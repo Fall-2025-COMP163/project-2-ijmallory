@@ -228,7 +228,7 @@ class Mage(Player):
         Special mage ability - a powerful magical attack.
         """
         # TODO: Implement fireball spell
-        ability_damage = self.user_magic * 2
+        ability_damage = self.magic * 2
         print(f"*** {target.name} casts Fireball! ***")
         target.take_damage(ability_damage)
         # Should do magic-based damage with bonus
