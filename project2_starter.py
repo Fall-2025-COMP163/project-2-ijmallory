@@ -98,7 +98,7 @@ class Character:
         self.health -= damage
         if self.health < 0:
             self.health = 0
-         print(f"{self.name} takes {damage} damage! Health remaining: {self.health}/{self.max_health}")   
+        print(f"{self.name} takes {damage} damage! Health remaining: {self.health}/{self.max_health}")   
         if self.health <= 0:    
             print(f"{self.name} has been incapacitated!")
         # Reduce self.health by damage amount
