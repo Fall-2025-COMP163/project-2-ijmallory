@@ -65,11 +65,11 @@ class Character:
     def __init__(self, name, health, strength, magic):
         """Initialize basic character attributes"""
         # TODO: Set the character's name, health, strength, and magic
-        self.user_name = name
-        self.user_health = health
-        self.user_strength = strength
-        self.user_magic = magic
-        self.max_health = health #Useful for display
+        self.name = name
+        self.health = health
+        self.strength = strength
+        self.magic = magic
+        self.health = health #Useful for display
         # These should be stored as instance variables
         pass
         
@@ -82,8 +82,8 @@ class Character:
         3. Print what happened
         """
         # TODO: Implement basic attack
-        damage = self.user_strength - self.user_magic
-        print(f"{self.user_name} is attacking {target.user_name} for {damage} base damage!")
+        damage = self.strength - self.magic
+        print(f"{self.name} is attacking {target.name} for {damage} base damage!")
         target.take_damage(damage)
         # Damage should be based on self.strength
         # Use target.take_damage(damage) to apply damage
@@ -95,10 +95,10 @@ class Character:
         Health should never go below 0.
         """
         # TODO: Implement taking damage
-        self.user_health -= damage
-        print(f"{self.user_name} takes {damage} damage! Health remaining: {self.user_health}/{self.max_health}")
-        if self.user_health <= 0:
-            print(f"{self.user_name} has been defeated!")
+        self.health -= damage
+        print(f"{self.name} takes {damage} damage! Health remaining: {self.health}/{self.max_health}")
+        if self.health <= 0:
+            print(f"{self.name} has been defeated!")
         # Reduce self.health by damage amount
         # Make sure health doesn't go below 0
         pass
@@ -108,10 +108,10 @@ class Character:
         Prints the character's current stats in a nice format.
         """
         # TODO: Print character's name, health, strength, and magic
-        print(f"\n--- {self.user_name}'s Stats ---")
-        print(f"Health: {self.user_health}/{self.max_health}")
-        print(f"Strength: {self.user_strength}")
-        print(f"Magic: {self.user_magic}")
+        print(f"\n--- {self.name}'s Stats ---")
+        print(f"Health: {self.health}/{self.max_health}")
+        print(f"Strength: {self.strength}")
+        print(f"Magic: {self.magic}")
         # Make it look nice with formatting
         pass
 
@@ -138,7 +138,7 @@ class Player(Character):
     # Added weapon composition function
     def equip_weapon(self, weapon):
         self.weapon = weapon
-        print(f"{self.user_name} equipped {weapon.name}")
+        print(f"{self.name} equipped {weapon.name}")
         
     def display_stats(self):
         """
@@ -175,8 +175,8 @@ class Warrior(Player):
         Warriors should do extra physical damage.
         """
         # TODO: Implement warrior attack
-        damage = self.user_strength + 5
-        print(f"{self.user_name} is attacking {target.user_name} for {damage} damage!")
+        damage = self.strength + 5
+        print(f"{self.name} is attacking {target.name} for {damage} damage!")
         target.take_damage(damage)
         # Should do more damage than basic attack
         # Maybe strength + 5 bonus damage?
@@ -187,8 +187,8 @@ class Warrior(Player):
         Special warrior ability - a powerful attack that does extra damage.
         """
         # TODO: Implement power strike
-        ability_damage = self.user_strength * 2
-        print(f"*** {target.user_name} uses Power Strike! ***")
+        ability_damage = self.strength * 2
+        print(f"*** {target.name} uses Power Strike! ***")
         target.take_damage(ability_damage)
         # Should do significantly more damage than regular attack
         pass
@@ -215,8 +215,8 @@ class Mage(Player):
         Mages should use magic for damage instead of strength.
         """
         # TODO: Implement mage attack
-        damage = self.user_magic
-        print(f"{self.user_name} is attacked {target.user_name} for {damage} base damage!")
+        damage = self.magic
+        print(f"{self.name} is attacked {target.name} for {damage} base damage!")
         target.take_damage(damage)
         # Should use self.magic for damage calculation instead of strength
         pass
@@ -227,7 +227,7 @@ class Mage(Player):
         """
         # TODO: Implement fireball spell
         ability_damage = self.user_magic * 2
-        print(f"*** {target.user_name} casts Fireball! ***")
+        print(f"*** {target.name} casts Fireball! ***")
         target.take_damage(ability_damage)
         # Should do magic-based damage with bonus
         pass
@@ -255,11 +255,11 @@ class Rogue(Player):
         Rogues should have a chance for extra damage (critical hits).
         """
         # TODO: Implement rogue attack
-        damage = self.user_magic + self.user_strength
+        damage = self.magic + self.strength
         if random.randint(1, 10) <= 3:
-            print(f"{self.user_name} lands a CRITICAL HIT on {target.user_name} for {damage} damage!")
+            print(f"{self.name} lands a CRITICAL HIT on {target.name} for {damage} damage!")
         else:
-            print(f"*** {target.user_name} lands a HIT for {damage} damage! ***")
+            print(f"*** {target.name} lands a HIT for {damage} damage! ***")
         target.take_damage(damage)
         # Could add a chance for critical hit (double damage)
         # Hint: use random.randint(1, 10) and if result <= 3, it's a crit
@@ -270,8 +270,8 @@ class Rogue(Player):
         Special rogue ability - guaranteed critical hit.
         """
         # TODO: Implement sneak attack
-        crit_damage = int((self.user_strength + self.user_magic) * 1.5)
-        print(f"*** {self.user_name} executes a Sneak Attack! (Critical Hit) ***")
+        crit_damage = int((self.strength + self.magic) * 1.5)
+        print(f"*** {self.name} executes a Sneak Attack! (Critical Hit) ***")
         target.take_damage(crit_damage)
         # Should always do critical damage
         pass
@@ -339,7 +339,7 @@ if __name__ == "__main__":
     dummy_target = Character("Target Dummy", 100, 0, 0)
 
     for character in [warrior, mage, rogue]:
-        print(f"\n{character.user_name} attacks the dummy:")
+        print(f"\n{character.name} attacks the dummy:")
         character.attack(dummy_target)
         dummy_target.health = 100
 
