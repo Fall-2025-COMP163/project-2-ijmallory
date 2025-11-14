@@ -62,14 +62,14 @@ class Character:
     This is the top of our inheritance hierarchy.
     """
     
-    def __init__(self, name, health, strength, magic):
+    def __init__(self, name, health, strength, magic, max_health):
         """Initialize basic character attributes"""
         # TODO: Set the character's name, health, strength, and magic
         self.name = name
         self.health = health
         self.strength = strength
         self.magic = magic
-        self.health = health #Useful for display
+        self.max_health = health #Useful for display
         # These should be stored as instance variables
         pass
         
@@ -98,7 +98,9 @@ class Character:
         self.health -= damage
         print(f"{self.name} takes {damage} damage! Health remaining: {self.health}/{self.max_health}")
         if self.health <= 0:
-            print(f"{self.name} has been defeated!")
+            print(f"{self.name} has been incapacitated!")
+        else:
+            return None
         # Reduce self.health by damage amount
         # Make sure health doesn't go below 0
         pass
