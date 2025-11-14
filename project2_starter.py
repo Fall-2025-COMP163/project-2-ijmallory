@@ -299,7 +299,7 @@ class Weapon:
         """
         # TODO: Print weapon name and damage bonus
         print(f"   Weapon: {self.name} (+{self.damage_bonus} Damage)")
-        return self.damage_bonus
+        return None
         pass
 
 # ============================================================================
